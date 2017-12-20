@@ -1,0 +1,157 @@
+\documentclass[dvips,12pt]{article}
+
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+\begin{document}
+
+
+\title{Emmersion Learning: Primary Language Detection Project Proposal}
+\author{Josh Greaves and Andrew Carr}
+\date{\today}
+
+\maketitle
+
+\section{Summary of Project}
+
+\subsection{Overview}
+We will build a system to detect a user's first language based on accent information obtained during a standardized language assessment test. 
+
+\subsection{Proposed system design}
+There are two possible systems that we could build. We would try both and see which one works best. The two systems are:
+
+\begin{itemize}
+\item \textbf{Standard Convolutional Neural Network:}
+This system has the benefit of being simple to implement and maintain allowing for additions in training data as more languages are analyzed. As such, it is quick to build and iterate with. It would be relatively simple to set up and get into production
+
+However, the main drawback to this system is that it would require fixed length audio sequences to be used at test time. These sequences might be too long, or too short, resulting in unnecessary test time or inaccurate results. 
+
+\item \textbf{Dynamic Recurrent Neural Network:}
+This system would work in real time as the user is speaking and deliver a result as soon as it is confident. This is beneficial because it could potentially take less time to deliver accurate results.
+This type of architecture is more complicated to build and maintain, but comes with the benefit of potentially increased accuracy. 
+\end{itemize}
+
+\subsection{Potential complications}
+Since this is ground breaking work, there is no guarantee that either of these systems could work, we would have to reconvene to discuss our options if this is the case. However, we are very confident that this problem is tractable and reasonable to solve. As was shown in our proof of concept, with more data, and optimizations to the system, we believe it will work according to your specifications.
+
+\section{Deliverable}
+There are several potential services and products that could be provided, from very simple to quite involved. 
+\begin{itemize}
+\item \textbf{Trained Model with documentation:}
+We would provide the fully trained model for you to load and integrate into your production system without any rigid API guidelines. This would be a quick and simple way to test the model in your system without lots of overhead. 
+
+It would require more involved work on your end to integrate the model and being using it with users.
+
+Documentation would include methods, results, and usability design specifications.
+\item \textbf{C++ or Python package API for use in production systems:}
+We would provide the model with standard documentation and a useful API for a more traditional 'plug and play' approach. This would result in higher quality and more reusable code, but would take longer to be written and tested.
+
+\item \textbf{Web app with tutorials and examples of system in use:}
+We would provide a trained model with documentation, an API, and an example web application that employs the system.
+
+
+\item \textbf{Additional options:}
+	\begin{itemize}
+	\item Testing Suite
+	\end{itemize}
+\end{itemize}
+
+
+\section{Overall Budgets and Costs}
+The cost of this system could be variable depending on what services and products are desired. A basic outline is as follows:
+
+\subsection{Trained Model with documentation}
+Price for model only:
+\begin{center}
+\begin{tabular}{ll}
+Documentation & \$ 150  \\
+Testing       & \$ 200  \\
+Static CNN       & \$ 500  \\
+Dynamic RNN      & \$ 750  \\
+\hline
+Total         & \$ 1,600
+\end{tabular}
+\end{center}
+
+\subsection{C++ or Python API}
+
+Price for Python API:
+\begin{center}
+\begin{tabular}{ll}
+Documentation & \$ 150  \\
+Testing       & \$ 200  \\
+Python API & \$ 200 \\
+Static CNN        & \$ 500  \\
+Dynamic RNN      & \$ 750  \\
+\hline
+Total         & \$ 1,800
+\end{tabular}
+\end{center}
+Price for C++ API:
+
+\begin{center}
+\begin{tabular}{ll}
+Documentation & \$ 150  \\
+Testing       & \$ 200  \\
+C++ API & \$ 400 \\
+Static CNN        & \$ 500  \\
+Dynamic RNN      & \$ 750  \\
+\hline
+Total         & \$ 2,000
+\end{tabular}
+\end{center}
+Price for C++ and Python API:
+
+\begin{center}
+\begin{tabular}{ll}
+Documentation & \$ 150  \\
+Testing       & \$ 200  \\
+Python API & \$ 200 \\
+C++ API & \$ 400 \\
+Static CNN        & \$ 500  \\
+Dynamic RNN      & \$ 750  \\
+\hline
+Total         & \$ 2,200
+\end{tabular}
+\end{center}
+
+
+\subsection{Web App}
+Cost Analysis for Web App:
+\begin{center}
+\begin{tabular}{ll}
+Documentation & \$ 150  \\
+Testing       & \$ 200  \\
+Python API & \$ 200 \\
+Web App & \$ 500 \\
+Static CNN        & \$ 500  \\
+Dynamic RNN      & \$ 750  \\
+\hline
+Total         & \$ 2,300
+\end{tabular}
+\end{center}
+
+
+\subsection{Additional options}
+Testing Suite: TBD
+
+\section{Timeframe}
+December 22 - Jan 5 Plan project
+Jan 5 - Jan 25 Write code and Test
+
+
+\section{Payment Schedule}
+$\frac{1}{4}$ before hand and $\frac{3}{4}$ upon delivery of product
+
+ 
+\section{Provisions}
+Free bug fixes for 1 month
+Standard rates apply after then
+
+
+\end{document}
