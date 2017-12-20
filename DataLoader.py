@@ -7,7 +7,7 @@ import random
 
 
 class DataLoader(object):
-    def __init__(self, path="data", dtype=np.float64, truncate_secs=None, sample_rate=44100):
+    def __init__(self, path="data", dtype=np.float64, truncate_secs=None, sample_rate=44100, train_split=0.7):
         self._path = path
         self._dtype = dtype
         self._truncate_secs = truncate_secs
@@ -15,6 +15,15 @@ class DataLoader(object):
         self._labels = None
         self._sample_rate = sample_rate
         self._num_data = 0
+
+        # For train and test
+        self._train_split = train_split
+        self._train_data = None
+        self._train_labels = None
+        self._test_data = None
+        self._test_labels = None
+        self._num_train_data = 0
+        self._num_test_data = 0
 
         self.index_to_lang = dict()
         self._lang_to_index = dict()
@@ -51,9 +60,21 @@ class DataLoader(object):
                 self._labels[index, self._lang_to_index[re.search('^[a-zA-Z]*', file).group(0)]] = 1
                 index += 1
 
-    def _get_batch_array(self, batch_size=32):
-        indices = np.random.randint(0, self._num_data, batch_size)
-        return self._data[indices, :], self._labels[indices, :]
+        indices = np.random.permutation(self._data.shape[0])
+        split_idx = int(self._num_data * self._train_split)
+        training_idx, test_idx = indices[:split_idx], indices[split_idx:]
+        self._train_data, self._train_labels = self._data[training_idx, :], self._labels[training_idx, :]
+        self._test_data, self._test_labels = self._data[test_idx, :], self._labels[test_idx, :]
+        self._num_train_data = self._train_data.shape[0]
+        self._num_test_data = self._test_data.shape[0]
+
+    def _get_batch_array(self, batch_size=32, test=False):
+        if test:
+            indices = np.random.randint(0, self._num_test_data, batch_size)
+            return self._test_data[indices, :], self._test_labels[indices, :]
+
+        indices = np.random.randint(0, self._num_train_data, batch_size)
+        return self._train_data[indices, :], self._train_labels[indices, :]
 
     def _load_list(self):
         self._data = []
